@@ -1,8 +1,0 @@
-{
-  "login": {
-    "invalidCredentials": "Epic sadface: Username and password do not match any user in this service"
-  },
-  "checkout": {
-    "orderComplete": "Thank you for your order!"
-  }
-}
