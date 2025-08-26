@@ -1,0 +1,55 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    environment: playwrightCI
+
+    steps:
+      # 1. Checkout repository
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Create .env file from secrets
+      - name: Create .env from secrets
+        run: |
+          echo "VALID_USER=${{ secrets.VALID_USER }}" > .env
+          echo "VALID_PASSWORD=${{ secrets.VALID_PASSWORD }}" >> .env
+          echo "INVALID_USER=${{ secrets.INVALID_USER }}" >> .env
+          echo "INVALID_PASSWORD=${{ secrets.INVALID_PASSWORD }}" >> .env
+
+      # 5. Run Playwright tests
+      - name: Run tests
+        run: npm run test:ci
+
+      # 6. Upload Allure results as artifact
+      - name: Upload Allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: ./allure-results
+
+      # 7. Publish Allure report to GitHub Pages
+      - name: Deploy Allure report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
