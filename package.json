@@ -5,13 +5,13 @@
   "scripts": {
     "clean:artifacts": "rimraf ./allure-results ./allure-report ./test-results",
     "auth:setup": "npx playwright test --project=setup",
-    "tests:only": "npx playwright test",
-    "tests:with:setup": "npm run clean:artifacts && npm run auth:setup && npm run tests:only",
+    "test:run": "npx playwright test",
+    "test:full": "npm run clean:artifacts && npm run auth:setup && npm run test:run",
+    "report:generate": "rimraf ./allure-report && npx allure generate ./allure-results -o ./allure-report",
     "report:serve": "npx allure serve ./allure-results",
-    "report:generate": "npx allure generate ./allure-results --clean -o ./allure-report",
     "report:open": "npx allure open ./allure-report",
-    "test:local": "npm run tests:with:setup || true && npm run report:serve",
-    "test:ci": "npm run tests:with:setup && npm run report:generate"
+    "test:local": "npm run test:full; npm run report:serve",
+    "test:ci": "npm run test:full && npm run report:generate"
   },
   "keywords": [],
   "author": "",
