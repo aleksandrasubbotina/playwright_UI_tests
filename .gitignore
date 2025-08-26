@@ -1,0 +1,20 @@
+# Node.js
+node_modules
+
+# Environment files
+# Excluded from .gitignore in demo project for reviewer's convenience.
+# .env
+
+# Allure reports
+allure-report
+allure-results
+
+# Playwright test results
+test-results/
+
+# Playwright storage state
+tests/storage/
+
+# Logs & system files
+*.log
+.DS_Store
