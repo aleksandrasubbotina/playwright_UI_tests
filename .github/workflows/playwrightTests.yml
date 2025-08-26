@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -26,7 +29,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # 4. Create .env file from secrets
+      # 4. Install Playwright browsers (required for CI)
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      # 5. Create .env file from secrets
       - name: Create .env from secrets
         run: |
           echo "VALID_USER=${{ secrets.VALID_USER }}" > .env
@@ -34,11 +41,11 @@ jobs:
           echo "INVALID_USER=${{ secrets.INVALID_USER }}" >> .env
           echo "INVALID_PASSWORD=${{ secrets.INVALID_PASSWORD }}" >> .env
 
-      # 5. Run Playwright tests
+      # 6. Run Playwright tests
       - name: Run tests
         run: npm run test:ci
 
-      # 6. Upload Allure results as artifact
+      # 7. Upload Allure results as artifact
       - name: Upload Allure results
         if: always()
         uses: actions/upload-artifact@v4
@@ -46,7 +53,7 @@ jobs:
           name: allure-results
           path: ./allure-results
 
-      # 7. Publish Allure report to GitHub Pages
+      # 8. Publish Allure report to GitHub Pages
       - name: Deploy Allure report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4
