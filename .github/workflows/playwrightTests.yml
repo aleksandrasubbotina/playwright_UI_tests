@@ -26,17 +26,24 @@ jobs:
         with:
           node-version: 20
 
-      # 3. Set npm registry to public and install dependencies
+      # 3. Set npm registry and install dependencies
       - name: Set npm registry and install dependencies
         run: |
           npm config set registry https://registry.npmjs.org/
           npm ci
 
-      # 4. Install only required Playwright browsers
+      # 4. Cache Playwright browsers
+      - name: Cache Playwright browsers
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
+
+      # 5. Install only required Playwright browsers
       - name: Install Playwright browsers
         run: npx playwright install chromium firefox --with-deps
 
-      # 5. Create .env file from secrets
+      # 6. Create .env file from secrets
       - name: Create .env from secrets
         run: |
           echo "VALID_USER=${{ secrets.VALID_USER }}" > .env
@@ -44,11 +51,11 @@ jobs:
           echo "INVALID_USER=${{ secrets.INVALID_USER }}" >> .env
           echo "INVALID_PASSWORD=${{ secrets.INVALID_PASSWORD }}" >> .env
 
-      # 6. Run Playwright tests
+      # 7. Run Playwright tests
       - name: Run tests
         run: npm run test:ci
 
-      # 7. Upload Allure results as artifact
+      # 8. Upload Allure results as artifact
       - name: Upload Allure results
         if: always()
         uses: actions/upload-artifact@v4
@@ -56,10 +63,16 @@ jobs:
           name: allure-results
           path: ./allure-results
 
-      # 8. Publish Allure report to GitHub Pages
+      # 9. Generate Allure report
+      - name: Generate Allure report
+        if: always()
+        run: npm run report:generate
+
+      # 10. Deploy Allure report to GitHub Pages
       - name: Deploy Allure report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report
+          publish_branch: gh-pages
