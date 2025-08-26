@@ -13,6 +13,7 @@ export default defineConfig({
     video: 'retain-on-failure',
     trace: 'retain-on-failure',
   },
+  outputDir: 'test-results',
   projects: [
     {
       name: 'setup',
