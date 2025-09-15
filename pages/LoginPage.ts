@@ -20,6 +20,15 @@ export class LoginPage extends BasePage {
     });
   }
 
+  async expectNonExistingElementToBeVisible() {
+    await step(
+      `Verify non-existing element is visible (intentionally failing assertion)`,
+      async () => {
+        await expect(this.page.locator('text=NonExistingElement')).toBeVisible();
+      },
+    );
+  }
+
   async expectError(expectedMessage: string) {
     await step(`Verify error message: ${expectedMessage}`, async () => {
       await this.errorMessage.waitFor({ state: 'visible' });
