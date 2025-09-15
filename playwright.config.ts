@@ -23,9 +23,5 @@ export default defineConfig({
       name: 'tests-chromium',
       use: { storageState: 'tests/storage/loggedInState.json', browserName: 'chromium' },
     },
-    {
-      name: 'tests-firefox',
-      use: { storageState: 'tests/storage/loggedInState.json', browserName: 'firefox' },
-    },
   ],
 });

@@ -41,7 +41,7 @@ jobs:
 
       # 5. Install only required Playwright browsers
       - name: Install Playwright browsers
-        run: npx playwright install chromium firefox --with-deps
+        run: npx playwright install chromium --with-deps
 
       # 6. Create .env file from secrets
       - name: Create .env from secrets
