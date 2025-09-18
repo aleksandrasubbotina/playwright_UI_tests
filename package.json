@@ -7,11 +7,12 @@
     "clean:artifacts": "rimraf ./allure-results/* ./allure-report/* ./test-results/*",
     "auth:setup": "npx playwright test --project=setup",
     "test:run": "npx playwright test --project=tests-chromium --grep-invert @demo-fail",
-    "test:fail": "npx playwright test --grep @demo-fail",
+    "test:fail:full": "npm run setup:folders && npm run clean:artifacts; npx playwright test --grep @demo-fail ; npm run report:view",
     "test:full": "npm run setup:folders && npm run clean:artifacts && npm run auth:setup && npm run test:run",
     "report:generate": "rimraf ./allure-report/* && npx allure generate ./allure-results -o ./allure-report",
     "report:serve": "npx allure serve ./allure-results",
     "report:view": "npm run report:generate && npm run report:serve",
+    "test:local": "npm run test:full && npm run report:view",
     "test:ci": "npm run test:full && npm run report:generate",
     "docker:test": "docker build -t playwright-tests . && docker run --rm --env-file .env -v $(pwd)/allure-results:/app/allure-results -v $(pwd)/allure-report:/app/allure-report -v $(pwd)/test-results:/app/test-results playwright-tests",
     "docker:test:report": "npm run docker:test && npm run report:view"
