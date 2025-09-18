@@ -1,1 +1,1 @@
-{"id":"d5931ac6370b8d5aeb5c785af6fc5262","fullName":"setup/auth.setup.ts:8:5","name":"Setup login session","status":"passed","testResultsByEnv":{"default":"cd9c6e9c6f20798d15b601edde52ebbe"}}
+{"id":"d5931ac6370b8d5aeb5c785af6fc5262","fullName":"setup/auth.setup.ts:8:5","name":"Setup login session","status":"failed","testResultsByEnv":{"default":"2d9d8e0c1c9f7bb30379f44873a68e08"}}
