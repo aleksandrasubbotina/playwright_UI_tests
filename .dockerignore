@@ -1,0 +1,27 @@
+# Node.js
+node_modules
+
+# Docker files
+Dockerfile
+.dockerignore
+
+# Git / CI configs
+.git
+.github
+
+# Environment files
+.env
+
+# Allure reports
+allure-report
+allure-results
+
+# Playwright test results
+test-results/
+
+# Playwright storage state
+tests/storage/
+
+# Logs & system files
+*.log
+.DS_Store

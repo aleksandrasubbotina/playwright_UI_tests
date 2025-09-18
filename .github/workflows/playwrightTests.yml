@@ -13,6 +13,7 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    environment: playwrightCI
 
     steps:
       # 1. Checkout repository
