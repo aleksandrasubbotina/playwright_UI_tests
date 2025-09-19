@@ -1,1 +1,0 @@
-Logged-in storage state saved at: /home/runner/work/playwright_UI_tests/playwright_UI_tests/tests/storage/loggedInState.json
