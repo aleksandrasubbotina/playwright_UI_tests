@@ -98,7 +98,7 @@ npm run test:local
 * runs all passing tests
 * generates and opens Allure report
 
-![Demo GIF](https://imgur.com/a/G6gHaon)
+<img src="media/test:local.gif" width="700px" alt="Running tests locally GIF">
 
 ---
 &nbsp; 🚢&nbsp; **Run tests inside Docker**
@@ -110,6 +110,8 @@ npm run docker:test:report
 * builds the Docker image
 * runs all tests inside a container
 * generates and opens Allure report locally
+
+<img src="media/docker:test:report.gif" width="700px" alt="Run tests inside Docker GIF">
 
 ---
 &nbsp; 🔄&nbsp; **Run tests in CI**
@@ -124,6 +126,8 @@ The script is used in the GitHub Actions workflow (.yml file) that:
 * generates an Allure report after the run
 * publishes it to GitHub Pages for easy sharing
 
+<img src="media/GitHubActions.png" width="900px" alt="GitHub Actions screenshot">
+
 ---
 &nbsp; ❌&nbsp; **Run only the intentionally failing test and view report locally**
 
@@ -134,6 +138,8 @@ npm run test:fail:full
 * prepares folders, cleans artifacts
 * runs only the failing test (`@demo-fail`)
 * generates and opens Allure report
+
+<img src="media/test:fail:report.gif" width="700px" alt="Running failing test GIF">
 
 ---
 
@@ -177,5 +183,13 @@ This project is a demo, but the practices shown here (Page Object Model, Allure 
 
 Hopefully, it gives you a clear picture of how I approach test automation design.
 
-**Thank you for your time!** 🌼
+**Thank you for your time!**
 
+<img src="media/thank-you.gif" width="300px" alt="Smiling dog GIF">
+
+
+<br>
+
+
+
+<br>
