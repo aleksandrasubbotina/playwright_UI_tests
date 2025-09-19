@@ -4,7 +4,7 @@ export default defineConfig({
   testDir: './tests',
   timeout: 30 * 1000,
   expect: { timeout: 5 * 1000 },
-  retries: 1,
+  retries: 0,
   reporter: [['line'], ['allure-playwright']],
   use: {
     baseURL: 'https://www.saucedemo.com',
