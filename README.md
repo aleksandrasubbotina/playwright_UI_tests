@@ -98,6 +98,8 @@ npm run test:local
 * runs all passing tests
 * generates and opens Allure report
 
+![Demo GIF](https://drive.google.com/uc?export=view&id=1G-1B1mlKoGf3-BjMjBx7KKiv3RJk8Ue0)
+
 ---
 &nbsp; 🚢&nbsp; **Run tests inside Docker**
 
