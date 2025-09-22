@@ -9,7 +9,7 @@
     "test:run": "npx playwright test --project=tests-chromium --grep-invert @demo-fail",
     "test:fail:full": "npm run setup:folders && npm run clean:artifacts; npx playwright test --grep @demo-fail ; npm run report:view",
     "test:full": "npm run setup:folders && npm run clean:artifacts && npm run auth:setup && npm run test:run",
-    "report:generate": "rimraf ./allure-report/* && npx allure generate --clean ./allure-results -o ./allure-report",
+    "report:generate": "rimraf ./allure-report/* && npx allure generate ./allure-results -o ./allure-report",
     "report:serve": "npx allure serve ./allure-results",
     "report:view": "npm run report:generate && npm run report:serve",
     "test:local": "npm run test:full && npm run report:view",
