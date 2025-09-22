@@ -54,18 +54,6 @@ export class ProductsPage extends BasePage {
     });
   }
 
-  // Assertions
-
-  async verifyProductsVisible() {
-    await step('Verify products are visible', async () => {
-      const count = await this.inventoryItems.count();
-      expect(count).toBeGreaterThan(0);
-
-      const firstItemName = this.inventoryItems.first().locator(this.itemNameLocator);
-      await expect(firstItemName).toBeVisible();
-    });
-  }
-
   async getCartCount(): Promise<number> {
     return await step(`Get cart count`, async () => {
       if (await this.cartBadge.isVisible()) {
@@ -73,6 +61,17 @@ export class ProductsPage extends BasePage {
         return Number(cartCountText);
       }
       return 0;
+    });
+  }
+
+  // Assertions
+  async verifyProductsVisible() {
+    await step('Verify products are visible', async () => {
+      const count = await this.inventoryItems.count();
+      expect(count).toBeGreaterThan(0);
+
+      const firstItemName = this.inventoryItems.first().locator(this.itemNameLocator);
+      await expect(firstItemName).toBeVisible();
     });
   }
 
