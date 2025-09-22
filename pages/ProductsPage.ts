@@ -66,6 +66,16 @@ export class ProductsPage extends BasePage {
     });
   }
 
+  async getCartCount(): Promise<number> {
+    return await step(`Get cart count`, async () => {
+      if (await this.cartBadge.isVisible()) {
+        const cartCountText = await this.cartBadge.innerText();
+        return Number(cartCountText);
+      }
+      return 0;
+    });
+  }
+
   async verifyCartCount(count: number) {
     await step(`Verify cart count is ${count}`, async () => {
       await expect(this.cartBadge).toHaveText(String(count));
